@@ -7,7 +7,22 @@
   </head>
   <body>
     What chat room would you like to enter?<br />
-    <input id="room-name-input" type="text" size="100" /><br />
+    {% if not is_nick_name_set %}
+    <input
+      id="nick-name-input"
+      type="text"
+      size="100"
+      required
+      placeholder="enter your nickname"
+    /><br />
+    {% endif %}
+    <input
+      id="room-name-input"
+      type="text"
+      size="100"
+      required
+      placeholder="enter the room name"
+    /><br />
     <input id="room-name-submit" type="button" value="Enter" />
 
     <script>
@@ -21,7 +36,8 @@
 
       document.querySelector('#room-name-submit').onclick = function (e) {
         var roomName = document.querySelector('#room-name-input').value;
-        window.location.pathname = '/chat/' + roomName + '/';
+        let nickName = document.querySelector('#nick-name-input').value;
+        window.location.pathname = '/chat/' + roomName + '/' + nickName + '/';
       };
     </script>
   </body>
